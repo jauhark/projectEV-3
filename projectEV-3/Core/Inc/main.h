@@ -57,8 +57,6 @@ extern "C" {
 void Error_Handler(void);
 
 /* USER CODE BEGIN EFP */
-extern osSemaphoreId_t uartDataKeyHandle;
-extern osSemaphoreId_t adcDataKeyHandle;
 
 
 

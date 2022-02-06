@@ -8,7 +8,6 @@
 #include "w_code.h"
 
 uint8_t w_oledYPos[w_OLED_MSG_NO] = { Line1, Line2, Line3, Line4, Line5 };
-char w_CLEARBUFF[] = "            ";
 //-------------------------------------------------------------
 /*
  * function initialising oled buffer struct. this value will be displayed unless
@@ -71,7 +70,7 @@ char* w_oledParseUartData(char *data) {
  * Writes the data in w_oledData to lines according to its size. Extra data not fitting
  * will be discarded.
  */
-
+char w_CLEARBUFF[] = "            ";
 void w_oledPageWrite() {
 	static uint8_t LineVal = 0;
 	ssd1306_SetCursor(0, w_oledYPos[0]);

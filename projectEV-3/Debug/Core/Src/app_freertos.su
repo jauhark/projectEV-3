@@ -1,4 +1,4 @@
-app_freertos.c:86:6:MX_FREERTOS_Init	8	static
-app_freertos.c:144:6:StartDefaultTask	16	static
-app_freertos.c:162:6:StartDisplayUpdate	16	static
-app_freertos.c:191:6:StartReadCommPorts	16	static
+app_freertos.c:98:6:MX_FREERTOS_Init	8	static
+app_freertos.c:153:6:StartDefaultTask	16	static
+app_freertos.c:172:6:StartDisplayUpdate	16	static
+app_freertos.c:202:6:StartReadCommPorts	16	static

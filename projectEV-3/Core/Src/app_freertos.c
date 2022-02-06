@@ -49,23 +49,35 @@
 /* USER CODE END Variables */
 /* Definitions for defaultTask */
 osThreadId_t defaultTaskHandle;
-const osThreadAttr_t defaultTask_attributes = { .name = "defaultTask",
-		.priority = (osPriority_t) osPriorityLow, .stack_size = 128 * 4 };
+const osThreadAttr_t defaultTask_attributes = {
+  .name = "defaultTask",
+  .priority = (osPriority_t) osPriorityLow,
+  .stack_size = 128 * 4
+};
 /* Definitions for DisplayUpdate */
 osThreadId_t DisplayUpdateHandle;
-const osThreadAttr_t DisplayUpdate_attributes = { .name = "DisplayUpdate",
-		.priority = (osPriority_t) osPriorityNormal, .stack_size = 128 * 4 };
+const osThreadAttr_t DisplayUpdate_attributes = {
+  .name = "DisplayUpdate",
+  .priority = (osPriority_t) osPriorityNormal,
+  .stack_size = 128 * 4
+};
 /* Definitions for ReadCommPorts */
 osThreadId_t ReadCommPortsHandle;
-const osThreadAttr_t ReadCommPorts_attributes =
-		{ .name = "ReadCommPorts", .priority =
-				(osPriority_t) osPriorityBelowNormal7, .stack_size = 128 * 4 };
+const osThreadAttr_t ReadCommPorts_attributes = {
+  .name = "ReadCommPorts",
+  .priority = (osPriority_t) osPriorityBelowNormal7,
+  .stack_size = 128 * 4
+};
 /* Definitions for uartDataKey */
 osSemaphoreId_t uartDataKeyHandle;
-const osSemaphoreAttr_t uartDataKey_attributes = { .name = "uartDataKey" };
+const osSemaphoreAttr_t uartDataKey_attributes = {
+  .name = "uartDataKey"
+};
 /* Definitions for adcDataKey */
 osSemaphoreId_t adcDataKeyHandle;
-const osSemaphoreAttr_t adcDataKey_attributes = { .name = "adcDataKey" };
+const osSemaphoreAttr_t adcDataKey_attributes = {
+  .name = "adcDataKey"
+};
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
@@ -79,58 +91,55 @@ void StartReadCommPorts(void *argument);
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
 /**
- * @brief  FreeRTOS initialization
- * @param  None
- * @retval None
- */
+  * @brief  FreeRTOS initialization
+  * @param  None
+  * @retval None
+  */
 void MX_FREERTOS_Init(void) {
-	/* USER CODE BEGIN Init */
+  /* USER CODE BEGIN Init */
 
-	/* USER CODE END Init */
+  /* USER CODE END Init */
 
-	/* USER CODE BEGIN RTOS_MUTEX */
+  /* USER CODE BEGIN RTOS_MUTEX */
 	/* add mutexes, ... */
-	/* USER CODE END RTOS_MUTEX */
+  /* USER CODE END RTOS_MUTEX */
 
-	/* Create the semaphores(s) */
-	/* creation of uartDataKey */
-	uartDataKeyHandle = osSemaphoreNew(1, 1, &uartDataKey_attributes);
+  /* Create the semaphores(s) */
+  /* creation of uartDataKey */
+  uartDataKeyHandle = osSemaphoreNew(1, 1, &uartDataKey_attributes);
 
-	/* creation of adcDataKey */
-	adcDataKeyHandle = osSemaphoreNew(1, 1, &adcDataKey_attributes);
+  /* creation of adcDataKey */
+  adcDataKeyHandle = osSemaphoreNew(1, 1, &adcDataKey_attributes);
 
-	/* USER CODE BEGIN RTOS_SEMAPHORES */
+  /* USER CODE BEGIN RTOS_SEMAPHORES */
 	/* add semaphores, ... */
-	/* USER CODE END RTOS_SEMAPHORES */
+  /* USER CODE END RTOS_SEMAPHORES */
 
-	/* USER CODE BEGIN RTOS_TIMERS */
+  /* USER CODE BEGIN RTOS_TIMERS */
 	/* start timers, add new ones, ... */
-	/* USER CODE END RTOS_TIMERS */
+  /* USER CODE END RTOS_TIMERS */
 
-	/* USER CODE BEGIN RTOS_QUEUES */
+  /* USER CODE BEGIN RTOS_QUEUES */
 	/* add queues, ... */
-	/* USER CODE END RTOS_QUEUES */
+  /* USER CODE END RTOS_QUEUES */
 
-	/* Create the thread(s) */
-	/* creation of defaultTask */
-	defaultTaskHandle = osThreadNew(StartDefaultTask, NULL,
-			&defaultTask_attributes);
+  /* Create the thread(s) */
+  /* creation of defaultTask */
+  defaultTaskHandle = osThreadNew(StartDefaultTask, NULL, &defaultTask_attributes);
 
-	/* creation of DisplayUpdate */
-	DisplayUpdateHandle = osThreadNew(StartDisplayUpdate, NULL,
-			&DisplayUpdate_attributes);
+  /* creation of DisplayUpdate */
+  DisplayUpdateHandle = osThreadNew(StartDisplayUpdate, NULL, &DisplayUpdate_attributes);
 
-	/* creation of ReadCommPorts */
-	ReadCommPortsHandle = osThreadNew(StartReadCommPorts, NULL,
-			&ReadCommPorts_attributes);
+  /* creation of ReadCommPorts */
+  ReadCommPortsHandle = osThreadNew(StartReadCommPorts, NULL, &ReadCommPorts_attributes);
 
-	/* USER CODE BEGIN RTOS_THREADS */
+  /* USER CODE BEGIN RTOS_THREADS */
 	/* add threads, ... */
-	/* USER CODE END RTOS_THREADS */
+  /* USER CODE END RTOS_THREADS */
 
-	/* USER CODE BEGIN RTOS_EVENTS */
+  /* USER CODE BEGIN RTOS_EVENTS */
 	/* add events, ... */
-	/* USER CODE END RTOS_EVENTS */
+  /* USER CODE END RTOS_EVENTS */
 
 }
 
@@ -141,15 +150,16 @@ void MX_FREERTOS_Init(void) {
  * @retval None
  */
 /* USER CODE END Header_StartDefaultTask */
-void StartDefaultTask(void *argument) {
-	/* USER CODE BEGIN StartDefaultTask */
+void StartDefaultTask(void *argument)
+{
+  /* USER CODE BEGIN StartDefaultTask */
 	w_Initialize();
 	strcpy(w_uartBuff, "<<DATA>>");
 	/* Infinite loop */
 	for (;;) {
 		osDelay(1);
 	}
-	/* USER CODE END StartDefaultTask */
+  /* USER CODE END StartDefaultTask */
 }
 
 /* USER CODE BEGIN Header_StartDisplayUpdate */
@@ -159,13 +169,14 @@ void StartDefaultTask(void *argument) {
  * @retval None
  */
 /* USER CODE END Header_StartDisplayUpdate */
-void StartDisplayUpdate(void *argument) {
-	/* USER CODE BEGIN StartDisplayUpdate */
+void StartDisplayUpdate(void *argument)
+{
+  /* USER CODE BEGIN StartDisplayUpdate */
 	/* Infinite loop */
 	for (;;) {
 
-//		osSemaphoreAcquire(uartDataKeyHandle, osWaitForever);
-//		osSemaphoreAcquire(adcDataKeyHandle, osWaitForever);
+		osSemaphoreAcquire(uartDataKeyHandle, osWaitForever);
+		osSemaphoreAcquire(adcDataKeyHandle, osWaitForever);
 
 		w_oledCopyBuffer(w_oledParseUartData(w_uartBuff), 0, w_FONT2);
 
@@ -174,11 +185,11 @@ void StartDisplayUpdate(void *argument) {
 		//memset(w_adcString, 0, 10);
 		w_oledPageWrite();
 
-//		osSemaphoreRelease(uartDataKeyHandle);
-//		osSemaphoreRelease(adcDataKeyHandle);
+		osSemaphoreRelease(uartDataKeyHandle);
+		osSemaphoreRelease(adcDataKeyHandle);
 		osDelay(10);
 	}
-	/* USER CODE END StartDisplayUpdate */
+  /* USER CODE END StartDisplayUpdate */
 }
 
 /* USER CODE BEGIN Header_StartReadCommPorts */
@@ -188,13 +199,14 @@ void StartDisplayUpdate(void *argument) {
  * @retval None
  */
 /* USER CODE END Header_StartReadCommPorts */
-void StartReadCommPorts(void *argument) {
-	/* USER CODE BEGIN StartReadCommPorts */
+void StartReadCommPorts(void *argument)
+{
+  /* USER CODE BEGIN StartReadCommPorts */
 	/* Infinite loop */
 	for (;;) {
 		osDelay(100);
 	}
-	/* USER CODE END StartReadCommPorts */
+  /* USER CODE END StartReadCommPorts */
 }
 
 /* Private application code --------------------------------------------------*/
