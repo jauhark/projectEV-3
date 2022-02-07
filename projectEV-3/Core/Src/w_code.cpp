@@ -43,6 +43,7 @@ void w_oledCopyBuffer(char *data, uint8_t line, FontDef *font) {
 char* w_oledParseUartData(char *data) {
 	uint8_t uartMsgBegFound = 0;
 	uint8_t uartMsgEndFound = 0;
+	uint8_t uartMsgLength=0;
 	char tempVar;
 	char *dataptr = w_uartParsedData;
 	memset(w_uartParsedData, 0, w_OLED_MSG_LEN);
@@ -70,7 +71,7 @@ char* w_oledParseUartData(char *data) {
  * Writes the data in w_oledData to lines according to its size. Extra data not fitting
  * will be discarded.
  */
-char w_CLEARBUFF[] = "            ";
+char w_CLEARBUFF[] = "                    ";
 void w_oledPageWrite() {
 	static uint8_t LineVal = 0;
 	ssd1306_SetCursor(0, w_oledYPos[0]);

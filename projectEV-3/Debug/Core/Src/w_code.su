@@ -1,5 +1,5 @@
 w_code.cpp:16:6:void w_Initialize()	8	static
 w_code.cpp:36:6:void w_oledCopyBuffer(char*, uint8_t, FontDef*)	24	static
 w_code.cpp:43:7:char* w_oledParseUartData(char*)	32	static
-w_code.cpp:74:6:void w_oledPageWrite()	16	static
-w_code.cpp:111:9:uint8_t w_oledPosIncVal(uint8_t)	16	static
+w_code.cpp:75:6:void w_oledPageWrite()	16	static
+w_code.cpp:112:9:uint8_t w_oledPosIncVal(uint8_t)	16	static

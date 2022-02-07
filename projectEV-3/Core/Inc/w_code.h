@@ -29,8 +29,8 @@
 #define w_FONT2 &(Font_11x18)
 
 #define w_OLED_MSG_NO 5
-#define w_OLED_MSG_LEN 10
-#define w_UART_DMA_BUFF_LEN 25
+#define w_OLED_MSG_LEN 20
+#define w_UART_DMA_BUFF_LEN 55
 //-------------------------------------------------------------
 //-----------------------------OLED_DATA-----------------------
 

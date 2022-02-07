@@ -178,7 +178,7 @@ void StartDisplayUpdate(void *argument)
 		osSemaphoreAcquire(uartDataKeyHandle, osWaitForever);
 		osSemaphoreAcquire(adcDataKeyHandle, osWaitForever);
 
-		w_oledCopyBuffer(w_oledParseUartData(w_uartBuff), 0, w_FONT2);
+		w_oledCopyBuffer(w_oledParseUartData(w_uartBuff), 0, w_FONT1);
 
 		sprintf(w_adcString, "ADC: %u", w_adcBuff);
 		w_oledCopyBuffer(w_adcString, 1, w_FONT2);
