@@ -44,8 +44,14 @@ struct {
 
 char w_uartBuff[w_UART_DMA_BUFF_LEN];
 char w_uartParsedData[w_OLED_MSG_LEN];
+
 char w_adcString[10];
-uint16_t w_adcBuff;
+uint16_t w_adcVal;
+
+uint32_t w_adcAvg;
+uint16_t w_adcDataBuff[10];
+char w_adcAvgdString[10];
+
 
 void w_Initialize();
 void w_oledCopyBuffer(char *, uint8_t, FontDef *);

@@ -27,23 +27,23 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   ALLOC
  11 .ARM.attributes 00000030  00000000  00000000  000200a4  2**0
                   CONTENTS, READONLY
- 12 .debug_info   000368d0  00000000  00000000  000200d4  2**0
+ 12 .debug_info   00036bd2  00000000  00000000  000200d4  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 13 .debug_abbrev 00005b0a  00000000  00000000  000569a4  2**0
+ 13 .debug_abbrev 00005b0a  00000000  00000000  00056ca6  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_aranges 00002170  00000000  00000000  0005c4b0  2**3
+ 14 .debug_aranges 00002170  00000000  00000000  0005c7b0  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_ranges 00001f30  00000000  00000000  0005e620  2**3
+ 15 .debug_ranges 00001f30  00000000  00000000  0005e920  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_macro  0002fee4  00000000  00000000  00060550  2**0
+ 16 .debug_macro  0002fee4  00000000  00000000  00060850  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   00029104  00000000  00000000  00090434  2**0
+ 17 .debug_line   00029104  00000000  00000000  00090734  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    0011ebb2  00000000  00000000  000b9538  2**0
+ 18 .debug_str    0011ebd8  00000000  00000000  000b9838  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000053  00000000  00000000  001d80ea  2**0
+ 19 .comment      00000053  00000000  00000000  001d8410  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  00009124  00000000  00000000  001d8140  2**2
+ 20 .debug_frame  00009124  00000000  00000000  001d8464  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -1647,7 +1647,7 @@ void StartDisplayUpdate(void *argument)
  8000cd8:	4618      	mov	r0, r3
  8000cda:	f000 fcc5 	bl	8001668 <w_oledCopyBuffer>
 
-		sprintf(w_adcString, "ADC: %u", w_adcBuff);
+		sprintf(w_adcString, "ADC: %u", w_adcVal);
  8000cde:	4b12      	ldr	r3, [pc, #72]	; (8000d28 <StartDisplayUpdate+0x80>)
  8000ce0:	881b      	ldrh	r3, [r3, #0]
  8000ce2:	461a      	mov	r2, r3
@@ -1700,6 +1700,7 @@ void StartReadCommPorts(void *argument)
  8000d3c:	af00      	add	r7, sp, #0
  8000d3e:	6078      	str	r0, [r7, #4]
   /* USER CODE BEGIN StartReadCommPorts */
+
 	/* Infinite loop */
 	for (;;) {
 		osDelay(100);
@@ -2299,7 +2300,7 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc) {
  8001098:	f04f 31ff 	mov.w	r1, #4294967295
  800109c:	4618      	mov	r0, r3
  800109e:	f006 fb0f 	bl	80076c0 <osSemaphoreAcquire>
-	w_adcBuff = HAL_ADC_GetValue(&hadc1);
+	w_adcVal = HAL_ADC_GetValue(&hadc1);
  80010a2:	4809      	ldr	r0, [pc, #36]	; (80010c8 <HAL_ADC_ConvCpltCallback+0x3c>)
  80010a4:	f001 fa00 	bl	80024a8 <HAL_ADC_GetValue>
  80010a8:	4603      	mov	r3, r0

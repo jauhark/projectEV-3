@@ -177,7 +177,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
 
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc) {
 	osSemaphoreAcquire(adcDataKeyHandle, osWaitForever);
-	w_adcBuff = HAL_ADC_GetValue(&hadc1);
+	w_adcVal = HAL_ADC_GetValue(&hadc1);
 	osSemaphoreRelease(adcDataKeyHandle);
 }
 /* USER CODE END 4 */

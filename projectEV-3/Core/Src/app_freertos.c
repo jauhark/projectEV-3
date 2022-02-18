@@ -180,7 +180,7 @@ void StartDisplayUpdate(void *argument)
 
 		w_oledCopyBuffer(w_oledParseUartData(w_uartBuff), 0, w_FONT1);
 
-		sprintf(w_adcString, "ADC: %u", w_adcBuff);
+		sprintf(w_adcString, "ADC: %u", w_adcVal);
 		w_oledCopyBuffer(w_adcString, 1, w_FONT2);
 		//memset(w_adcString, 0, 10);
 		w_oledPageWrite();
@@ -202,6 +202,7 @@ void StartDisplayUpdate(void *argument)
 void StartReadCommPorts(void *argument)
 {
   /* USER CODE BEGIN StartReadCommPorts */
+
 	/* Infinite loop */
 	for (;;) {
 		osDelay(100);
